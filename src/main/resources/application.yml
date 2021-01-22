@@ -1,0 +1,28 @@
+#已k: v 关键字冒号空格值。组成了一组键值对
+#若一个键下面有多个属性，子属性直接要缩进保持一致。至于缩进的量没有限制
+
+server:
+  port: 8082
+#     address: jdbc://
+#spring:
+#  datasource:
+#    password: root
+#    driver-class-name: com.mysql.jdbc.Driver
+
+#大小写敏感。
+# "" ： 字符串会识别特殊字符并执行/不会转义。  '': 字符串中特殊字符会进行转义处理
+person:
+  name: '张三 \n 李思'
+  age: 22
+  car:
+    name: 兰博基尼
+    color: 红色
+  map: {k1: 15,k2: vivo}
+#    k1: v1
+#    k2: v2
+  list:
+    - lucy
+    - lily
+    - tom
+  birthday: 2020/01/22
+  test: 111
