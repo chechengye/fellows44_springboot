@@ -1,8 +1,9 @@
 #已k: v 关键字冒号空格值。组成了一组键值对
 #若一个键下面有多个属性，子属性直接要缩进保持一致。至于缩进的量没有限制
 
-server:
-  port: 8082
+#配置日志相关,配置日志级别，包含并且大于此级别的都会打印
+#server:
+ # port: 8082
 #     address: jdbc://
 #spring:
 #  datasource:
@@ -26,3 +27,31 @@ person:
     - tom
   birthday: 2020/01/22
   test: 111
+
+logging:
+  level:
+    com.weichuang.fellows44_springboot: debug
+
+
+#spring:
+ # profiles:
+ #   active: dev
+
+
+
+#yml 文件支持多文档块的写法
+#激活方式spring.profiles.active=prod
+---
+server:
+  port: 8085
+spring:
+  profiles: dev
+
+---
+server:
+  port: 8086
+spring:
+  profiles: prod
+
+
+
