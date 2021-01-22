@@ -2,6 +2,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+	<!--
+		1、只要是SpringBoot项目，都会有一个spring-boot-starter-parent的一个场景启动器
+		   它的父依赖spring-boot-dependencies ：就是一个版本仲裁中心，里面包括所有自动导入的依赖与版本信息
+	-->
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
@@ -18,6 +22,12 @@
 		<java.version>1.8</java.version>
 	</properties>
 	<dependencies>
+		<!--
+			spring-boot-starter : 称为SpringBoot的场景启动器；负责帮我们导入相关的组件/依赖
+			spring-boot-starter-web ： 导入web模块所有应用到的组件/依赖
+			注意：SpringBoot项目想要应用哪个模块，就只需导入对应的场景启动器即可
+			地址：https://docs.spring.io/spring-boot/docs/1.5.9.RELEASE/reference/htmlsingle/#using-boot-starter
+		-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
