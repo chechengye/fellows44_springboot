@@ -42,16 +42,25 @@ logging:
 #yml 文件支持多文档块的写法
 #激活方式spring.profiles.active=prod
 ---
-server:
-  port: 8085
-spring:
-  profiles: dev
+#server:
+#  port: 8085
+#spring:
+#  profiles: dev
 
 ---
-server:
-  port: 8086
+#server:
+#  port: 8086
+#spring:
+#  profiles: prod
+
+###################################
+# 配置数据源
+##################################
 spring:
-  profiles: prod
-
-
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: weichuang2021
+    username: root
+    url: jdbc:mysql://81.70.223.139:3307/fellows44_springboot?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    type: com.alibaba.druid.pool.DruidDataSource
 

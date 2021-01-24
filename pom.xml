@@ -61,9 +61,51 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-validation</artifactId>
 		</dependency>
+
+		<!--导入jdbc依赖与mysql驱动-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jdbc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+		<!--导入druid数据源-->
+		<!-- https://mvnrepository.com/artifact/com.alibaba/druid -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
+			<version>1.1.21</version>
+		</dependency>
+
+		<!--mybatis依赖导入-->
+		<dependency>
+			<groupId>org.mybatis.spring.boot</groupId>
+			<artifactId>mybatis-spring-boot-starter</artifactId>
+			<version>1.3.1</version>
+		</dependency>
+
+
 	</dependencies>
 
 	<build>
+		<!--处理Mybatis自定义mapper配置文件位置问题-->
+		<!--<resources>
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**/*.xml</include>
+				</includes>
+			</resource>-->
+			<!--将resources目录下的配置文件编译-->
+			<!--<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+		</resources>-->
+
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
