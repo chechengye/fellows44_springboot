@@ -1,12 +1,12 @@
 package com.weichuang.fellows44_springboot.pojo;
 
-public class User {
+import java.io.Serializable;
 
-    private int age;
+public class Employee implements Serializable{
+
     private int id;
     private String name;
     private String email;
-    private String lastName;
 
     public int getId() {
         return id;
@@ -24,14 +24,6 @@ public class User {
         this.name = name;
     }
 
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -40,11 +32,12 @@ public class User {
         this.email = email;
     }
 
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                '}';
     }
 }

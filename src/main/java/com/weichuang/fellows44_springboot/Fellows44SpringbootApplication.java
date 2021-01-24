@@ -3,6 +3,7 @@ package com.weichuang.fellows44_springboot;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cache.annotation.EnableCaching;
 
 /**
  * @SpringBootApplication : 注解标识一个类为SpringBoot项目的启动类
@@ -13,11 +14,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * 				@Import({AutoConfigurationImportSelector.class}):会帮我们导入一堆自动配置的类
  * 						会主动去auto配置包下面的META-INF/spring.factories 找寻自动配置类
  *							xxxAutoConfiguration
- *
+ *  使用缓存：
+ *  1、开启缓存 @EnableCaching
  *
  */
 @SpringBootApplication
 @MapperScan("com.weichuang.fellows44_springboot.dao")
+@EnableCaching
 public class Fellows44SpringbootApplication {
 
 	public static void main(String[] args) {
