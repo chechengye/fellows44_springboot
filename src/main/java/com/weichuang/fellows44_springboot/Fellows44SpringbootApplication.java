@@ -1,6 +1,7 @@
 package com.weichuang.fellows44_springboot;
 
 import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.amqp.rabbit.annotation.EnableRabbit;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
@@ -16,6 +17,7 @@ import org.springframework.cache.annotation.EnableCaching;
  *							xxxAutoConfiguration
  *  使用缓存：
  *  1、开启缓存 @EnableCaching
+ *  	注解才可以应用
  *
  *
  *  Redis集成：
@@ -25,10 +27,12 @@ import org.springframework.cache.annotation.EnableCaching;
  *  数据结构是：键值对 key,value
  *  它支持五种类型的数据结构，如 String字符串（strings）， Hash散列（hashes）， List列表（lists）， Set集合（sets）， ZSet有序集合（sorted sets）
  *
+ * 	@EnableRabbit ： 开启注解版的Rabbit使用
  */
 @SpringBootApplication
 @MapperScan("com.weichuang.fellows44_springboot.dao")
 @EnableCaching
+@EnableRabbit
 public class Fellows44SpringbootApplication {
 
 	public static void main(String[] args) {

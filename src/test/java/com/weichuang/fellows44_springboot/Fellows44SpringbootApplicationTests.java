@@ -1,18 +1,27 @@
 package com.weichuang.fellows44_springboot;
 
 import com.weichuang.fellows44_springboot.config.MyRedisTemplate;
+import com.weichuang.fellows44_springboot.pojo.Book;
 import com.weichuang.fellows44_springboot.pojo.Employee;
 import com.weichuang.fellows44_springboot.pojo.Person;
 import com.weichuang.fellows44_springboot.service.EmployeeService;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.amqp.core.AmqpAdmin;
+import org.springframework.amqp.core.Binding;
+import org.springframework.amqp.core.DirectExchange;
+import org.springframework.amqp.core.Queue;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 
 import javax.sql.DataSource;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 @SpringBootTest
 class Fellows44SpringbootApplicationTests {
@@ -81,5 +90,43 @@ class Fellows44SpringbootApplicationTests {
 		 * 2、从容器中获取对象的模板对象
 		 */
 		empRedisTemplate.opsForValue().set("emp-03",employee);
+	}
+
+	@Autowired
+	RabbitTemplate rabbitTemplate;
+	@Test
+	void testRabbitFn(){
+		Map<String , Object> map = new HashMap();
+		map.put("msg","测试代码发送消息");
+		map.put("data", Arrays.asList("hello" , 22 , true));
+		//默认不是一种Json序列化的消息
+		rabbitTemplate.convertAndSend("exchange.direct","weichuang",map);
+	}
+
+	/**
+	 * 接收消息队列的信息
+	 */
+	@Test
+	void receiveFn(){
+		System.out.println("receiveFn : " + rabbitTemplate.receiveAndConvert("weichuang"));
+	}
+
+	@Test
+	void testObjectRabbitFn(){
+		Book book = new Book();
+		book.setAuthor("三国演义");
+		book.setName("罗贯中");
+		rabbitTemplate.convertAndSend("exchange.topic","*.news",book);
+	}
+
+	//代码中怎么做到实时监听消息呢？
+	//通过AmqpAdmin 来使用代码的方法创建交换机与队列、绑定路由键规则
+	@Autowired
+	AmqpAdmin amqpAdmin;
+	@Test
+	void testAmqpAdminFn(){
+		//amqpAdmin.declareExchange(new DirectExchange("exchangecode.direct"));
+		//amqpAdmin.declareQueue(new Queue("amqpadmin.queue",true));
+		amqpAdmin.declareBinding(new Binding("amqpadmin.queue",Binding.DestinationType.QUEUE ,"exchangecode.direct","amqpadmin.queue" , null ));
 	}
 }
