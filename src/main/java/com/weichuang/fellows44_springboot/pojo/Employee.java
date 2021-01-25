@@ -2,6 +2,9 @@ package com.weichuang.fellows44_springboot.pojo;
 
 import java.io.Serializable;
 
+/**
+ * implements Serializable : 操作缓存的时候一定要记得实现此序列化接口
+ */
 public class Employee implements Serializable{
 
     private int id;

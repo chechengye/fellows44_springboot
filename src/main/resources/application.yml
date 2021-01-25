@@ -63,4 +63,9 @@ spring:
     username: root
     url: jdbc:mysql://81.70.223.139:3307/fellows44_springboot?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
     type: com.alibaba.druid.pool.DruidDataSource
+#################################
+# 配置Redis连接
+##################################
+  redis:
+    host: 81.70.223.139
 

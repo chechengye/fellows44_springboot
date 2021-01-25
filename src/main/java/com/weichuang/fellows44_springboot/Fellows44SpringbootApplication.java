@@ -17,6 +17,14 @@ import org.springframework.cache.annotation.EnableCaching;
  *  使用缓存：
  *  1、开启缓存 @EnableCaching
  *
+ *
+ *  Redis集成：
+ *  Redis 是一个开源（BSD许可）的，内存中的数据结构存储系统，它可以用作数据库、缓存和消息中间件。
+ *
+ *  面试问到redis必问
+ *  数据结构是：键值对 key,value
+ *  它支持五种类型的数据结构，如 String字符串（strings）， Hash散列（hashes）， List列表（lists）， Set集合（sets）， ZSet有序集合（sorted sets）
+ *
  */
 @SpringBootApplication
 @MapperScan("com.weichuang.fellows44_springboot.dao")

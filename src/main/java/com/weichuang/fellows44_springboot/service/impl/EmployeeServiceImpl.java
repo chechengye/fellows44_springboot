@@ -4,6 +4,8 @@ import com.weichuang.fellows44_springboot.dao.EmployeeDao;
 import com.weichuang.fellows44_springboot.pojo.Employee;
 import com.weichuang.fellows44_springboot.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
@@ -26,10 +28,37 @@ public class EmployeeServiceImpl implements EmployeeService {
      * @param id
      * @return
      */
-    @Cacheable(cacheNames = "emp",condition = "#id > 1")
+    //@Cacheable(cacheNames = "emp")
     @Override
     public Employee getEmployeeById(Integer id) {
         System.out.println("员工" + id + "号");
         return employeeDao.getEmployeeById(id);
     }
+
+    /**
+     * @CachePut : （方法后） 先调用执行方法，后缓存返回数据
+     * @param employee
+     */
+    @CachePut(cacheNames = "emp" , key="#result.id")
+    @Override
+    public Employee updateEmployeeById(Employee employee) {
+        employeeDao.updateEmployeeById(employee);
+        return employee;
+    }
+
+    /**
+     * allEntries : 若为true删除指定缓存组件中的所有缓存记录
+     *       默认是false : 删除指定缓存组件中的指定key记录
+     * beforeInvocation ： false ， 方法正常执行之后，若方法中出现异常，就不会清除缓存、
+     *      true：方法执行前即清除缓存。
+     * @param id
+     */
+    @CacheEvict(cacheNames = "emp" ,beforeInvocation = true)
+    @Override
+    public void deleteEmployeeById(Integer id) {
+        employeeDao.deleteEmployeeById(id);
+        int i = 1/0;
+    }
+
+
 }
