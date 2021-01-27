@@ -2,8 +2,8 @@
 #若一个键下面有多个属性，子属性直接要缩进保持一致。至于缩进的量没有限制
 
 #配置日志相关,配置日志级别，包含并且大于此级别的都会打印
-#server:
- # port: 8082
+server:
+  port: 8082
 #     address: jdbc://
 #spring:
 #  datasource:
